@@ -4,6 +4,8 @@ import { UnsupportedChainIdError } from "@web3-react/core";
 // import thirdweb
 import { useWeb3 } from "@3rdweb/hooks";
 import { ethers } from "ethers";
+import ProposalRender from './components/ProposalRender';
+import Navbar from './components/Navbar';
 
 // We instantiate the sdk on Rinkeby.
 const sdk = new ThirdwebSDK("rinkeby");
@@ -36,6 +38,11 @@ const App = () => {
   const [proposals, setProposals] = useState([]);
   const [isVoting, setIsVoting] = useState(false);
   const [hasVoted, setHasVoted] = useState(false);
+  // VARIABLES TO RENDER PROPOSALS
+  const [proposalsAlreadyVoted, setProposalsAlreadyVoted] = useState([]);
+  const [proposalsToVote, setProposalsToVote] = useState([]);
+  //VARIABLE TO ALLOW VOTING
+  const [accountBalance, setAccountBalance] = useState(0);
 
   // Retrieve all our existing proposals from the contract.
   useEffect(() => {
@@ -68,19 +75,22 @@ const App = () => {
     }
 
     // Check if the user has already voted on the first proposal.
-    voteModule
-      .hasVoted(proposals[0].proposalId, address)
-      .then((hasVoted) => {
-        setHasVoted(hasVoted);
-        if (hasVoted) {
-          console.log("🥵 User has already voted");
-        } else {
-          console.log("🙂 User has not voted yet");
-        }
-      })
-      .catch((err) => {
-        console.error("failed to check if wallet has voted", err);
-      });
+    for (let i = 0; i < proposals.length; i++) { 
+      voteModule
+        .hasVoted(proposals[i].proposalId, address)
+        .then((hasVoted) => {
+          if (!hasVoted) {
+            setProposalsToVote(prevState => [...prevState, proposals[i]]);
+            console.log('😳 NO vote for prop nr ', i)
+          } else {
+            setProposalsAlreadyVoted(prevState => [...prevState, proposals[i]]);
+            console.log('🥵 ALREADY vote for nr ', i);
+          }
+        })
+        .catch((err) => {
+          console.error("failed to check if wallet has voted", err);
+        });
+    }
   }, [hasClaimedNFT, proposals, address]);
 
   // A fancy function to shorten someones wallet address, no need to show the whole thing. 
@@ -117,8 +127,14 @@ const App = () => {
     tokenModule
       .getAllHolderBalances()
       .then((amounts) => {
+        setMemberTokenAmounts(amounts)
         console.log("👜 Amounts", amounts)
-        setMemberTokenAmounts(amounts);
+        try {
+          setAccountBalance(
+          ethers.utils.formatUnits(amounts[address].toString(),18)
+        )} catch (e) {
+          console.log(e)
+        }
       })
       .catch((err) => {
         console.error("failed to get token amounts", err);
@@ -174,16 +190,18 @@ const App = () => {
         <h2>Please connect to Rinkeby</h2>
         <p>
           This dapp only works on the Rinkeby network, please switch networks
-          in your connected wallet.
+          in your connected wallet and REFRESH the site.
         </p>
       </div>
     );
   }
 
+  // This is the case where the user hasn't connected their wallet
+  // to your web app. Let them call connectWallet.
   if (!address) {
     return (
       <div className="landing">
-        <h1>Welcome to NarutoDAO</h1>
+        <h1>Welcome to Omens</h1>
         <button onClick={() => connectWallet("injected")} className="btn-hero">
           Connect your wallet
         </button>
@@ -213,25 +231,17 @@ const App = () => {
     });
   }
   
-  if (!address) {
-    return (
-      <div className="landing">
-        <h1>Welcome to NarutoDAO</h1>
-        <button onClick={() => connectWallet("injected")} className="btn-hero">
-          Connect your wallet
-        </button>
-      </div>
-    );
-  }
   
   if (hasClaimedNFT) {
     return (
       <div className="member-page">
-        <h1>🍪DAO Member Page</h1>
-        <p>Congratulations on being a member</p>
+        <Navbar />
+        <h1>Omens</h1>
+        <h2>Here you can find our members and proposals</h2>
         <div>
+          
           <div>
-            <h2>Member List</h2>
+            <p>Member List</p>
             <table className="card">
               <thead>
                 <tr>
@@ -251,8 +261,9 @@ const App = () => {
               </tbody>
             </table>
           </div>
+
           <div>
-            <h2>Active Proposals</h2>
+            <p>Active Proposals</p>
             <form
               onSubmit={async (e) => {
                 e.preventDefault();
@@ -262,7 +273,7 @@ const App = () => {
                 setIsVoting(true);
 
                 // lets get the votes from the form for the values
-                const votes = proposals.map((proposal) => {
+                const votes = proposalsToVote.map((proposal) => {
                   let voteResult = {
                     proposalId: proposal.proposalId,
                     //abstain by default
@@ -339,42 +350,46 @@ const App = () => {
                   setIsVoting(false);
                 }
               }}
-            >
-              {proposals.map((proposal, index) => (
-                <div key={proposal.proposalId} className="card">
-                  <h5>{proposal.description}</h5>
-                  <div>
-                    {proposal.votes.map((vote) => (
-                      <div key={vote.type}>
-                        <input
-                          type="radio"
-                          id={proposal.proposalId + "-" + vote.type}
-                          name={proposal.proposalId}
-                          value={vote.type}
-                          //default the "abstain" vote to chedked
-                          defaultChecked={vote.type === 2}
-                        />
-                        <label htmlFor={proposal.proposalId + "-" + vote.type}>
-                          {vote.label}
-                        </label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-              <button disabled={isVoting || hasVoted} type="submit">
-                {isVoting
-                  ? "Voting..."
-                  : hasVoted
-                    ? "You Already Voted"
-                    : "Submit Votes"}
-              </button>
-              <small>
-                This will trigger multiple transactions that you will need to
-                sign.
-              </small>
+              >
+  
+              {proposalsToVote.length >0 &&
+              <>
+                <ProposalRender
+                  key={proposalsToVote.proposalId} 
+                  proposalToRender={proposalsToVote} 
+                  ableToVote={true}
+                />
+                <button 
+                  disabled={isVoting || hasVoted || accountBalance === 0 } 
+                  type="submit"
+                >
+                  {isVoting
+                    ? "Voting..."
+                    : hasVoted
+                      ? "You Already Voted"
+                      : (accountBalance === 0)
+                        ? "Buy tokens to vote"
+                        :"Submit Votes"}
+                </button>
+                <small>
+                  This will trigger multiple transactions that you will need to
+                  sign.
+                </small>
+              </>}
+              {proposalsToVote.length === 0 &&
+                <p>No new proposals to vote on</p>
+              }
             </form>
+
+            <p>Proposals already voted</p>
+            <ProposalRender 
+              key={proposalsAlreadyVoted.proposalId}
+              proposalToRender={proposalsAlreadyVoted} 
+              ableToVote={false}
+            />
+
           </div>
+
         </div>
       </div>
     );
@@ -383,27 +398,28 @@ const App = () => {
   // Render mint nft screen.
   return (
     <div className="mint-nft">
-      <h1>Mint your free 🍪DAO Membership NFT</h1>
+      <h1>Mint your NFT to access Omens</h1>
       <button
         disabled={isClaiming}
         onClick={() => {
           setIsClaiming(true);
           // Call bundleDropModule.claim("0", 1) to mint nft to user's wallet.
           bundleDropModule
-            .claim("0", 1)
+            .claim('0', 1)
+            .then(() => {
+              setHasClaimedNFT(true);
+              alert(
+                `🌊 Successfully Minted! Check it out on OpenSea: https://testnets.opensea.io/assets/${bundleDropModule.address}/0`
+              );
+            })
             .catch((err) => {
-              console.error("failed to claim", err);
+              console.error('failed to claim', err);
               setIsClaiming(false);
+              setHasClaimedNFT(false);
             })
             .finally(() => {
               // Stop loading state.
               setIsClaiming(false);
-              // Set claim state.
-              setHasClaimedNFT(true);
-              // Show user their fancy new NFT!
-              console.log(
-                `Successfully Minted! Check it our on OpenSea: https://testnets.opensea.io/assets/${bundleDropModule.address}/0`
-              );
             });
         }}
       >
