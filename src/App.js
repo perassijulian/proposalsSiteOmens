@@ -6,6 +6,7 @@ import { useWeb3 } from "@3rdweb/hooks";
 import { ethers } from "ethers";
 import ProposalRender from './components/ProposalRender';
 import Navbar from './components/Navbar';
+import AddProposalForm from "./components/AddProposalForm";
 
 // We instantiate the sdk on Rinkeby.
 const sdk = new ThirdwebSDK("rinkeby");
@@ -388,6 +389,10 @@ const App = () => {
               ableToVote={false}
             />
 
+          </div>
+
+          <div>
+            <AddProposalForm />
           </div>
 
         </div>

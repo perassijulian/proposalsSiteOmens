@@ -4,23 +4,23 @@ body {
   font-family: Inter, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #7700ee;
-  color: #fff;
+  background-color: #111111;
+  color: #bcbcbc;
   overflow-x: hidden;
 }
 nav{
   display: flex;
+  background-color: #1e1e1e;
   justify-content: space-around;
   align-items: center;
   margin: 20px;
-  background-color: #FFFFFF;
   height: 60px;
   width: 100%;
   border-radius: 30px;
-
+  
 }
 nav > h4{
-  color:#000;
+  color: #bcbcbc;
   padding: 10px;
 }
 
@@ -63,7 +63,7 @@ h1 {
 .mint-nft,
 .member-page {
   flex-direction: column;
-  width: 960px;
+  width: 1500px;
   max-width: calc(100% - 1rem);
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -109,7 +109,7 @@ h1 {
 
 .member-page form h5 {
   margin-top: 0;
-  color: #7700ee;
+  color: #bcbcbc;
 }
 
 .member-page form .card > div {
@@ -123,17 +123,17 @@ h1 {
 }
 
 .card {
-  background-color: #fff;
+  background-color: #1e1e1e;
   padding: 1rem;
   border-radius: 1rem;
-  color: #000;
+  color: #bcbcbc;
   box-shadow: 3.1px 6.2px 6.2px hsl(0deg 0% 0% / 0.4);
 }
 
 button {
   cursor: pointer;
-  background-color: #000;
-  color: #fff;
+  background-color: #1e1e1e;
+  color: #bcbcbc;
   border: none;
   font-weight: bold;
   font-family: inherit;
@@ -154,4 +154,16 @@ button:focus {
 button:disabled {
   opacity: 0.8;
   pointer-events: none;
+}
+
+.proposalForm--description{
+  width: 100%;
+  height: 100px;
+  resize: none;
+  overflow: auto;
+}
+
+.proposalForm--span {
+  display: flex;
+  align-items: center;
 }
