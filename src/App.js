@@ -8,6 +8,7 @@ import ProposalRender from './components/ProposalRender';
 import Navbar from './components/Navbar';
 import AddProposalForm from "./components/AddProposalForm";
 import ActiveProposals from "./components/ActiveProposals";
+import MemberList from "./components/MemberList";
 
 // We instantiate the sdk on Rinkeby.
 const sdk = new ThirdwebSDK("rinkeby");
@@ -93,11 +94,6 @@ const App = () => {
         });
     }
   }, [hasClaimedNFT, proposals, address]);
-
-  // A fancy function to shorten someones wallet address, no need to show the whole thing. 
-  const shortenAddress = (str) => {
-    return str.substring(0, 6) + "..." + str.substring(str.length - 4);
-  };
 
   // This useEffect grabs all the addresses of our members holding our NFT.
   useEffect(() => {
@@ -239,30 +235,13 @@ const App = () => {
         <Navbar />
         <h1>Omens</h1>
         <h2>Here you can find our members and proposals</h2>
-        <div>
-          
+        <div>          
           <div>
             <p>Member List</p>
-            <table className="card">
-              <thead>
-                <tr>
-                  <th>Address</th>
-                  <th>Token Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                {memberList.map((member) => {
-                  return (
-                    <tr key={member.address}>
-                      <td>{shortenAddress(member.address)}</td>
-                      <td>{member.tokenAmount}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+            <MemberList 
+              memberList={memberList}
+            />
           </div>
-
           <div>
             <p>Active Proposals</p>
             <ActiveProposals 
@@ -274,7 +253,6 @@ const App = () => {
               hasVoted={hasVoted}
               setHasVoted={setHasVoted}
             />
-
             <p>Proposals already voted</p>
             <ProposalRender 
               key={proposalsAlreadyVoted.proposalId}
@@ -282,14 +260,12 @@ const App = () => {
               ableToVote={false}
             />
           </div>
-
           <div>
             <AddProposalForm 
               tokenModule={tokenModule}
               voteModule={voteModule}
             />
           </div>
-
         </div>
       </div>
     );
