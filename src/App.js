@@ -392,7 +392,10 @@ const App = () => {
           </div>
 
           <div>
-            <AddProposalForm />
+            <AddProposalForm 
+              tokenModule={tokenModule}
+              voteModule={voteModule}
+            />
           </div>
 
         </div>

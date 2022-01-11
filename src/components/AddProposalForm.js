@@ -1,9 +1,11 @@
 import React from 'react';
+import { ethers } from "ethers";
+
 import Select from './Select'
 import Addresses from './Addresses'
 
-export default function Form() {
-    
+export default function Form(props) {
+
     const [formData, setFormData] = React.useState(
         {
             //do this with array
@@ -21,6 +23,48 @@ export default function Form() {
             amountReceivers: 1,
             amountMoney: ""
         })
+        
+    async function setProposal() {
+        console.log('Proposal initiated!!')
+        const amount = ethers.utils.parseUnits(formData.amountMoney.toString(), 18);
+        console.log('amount', amount)
+        const description = formData.description;
+        console.log('description', description)
+        const toAddress = props.tokenModule.address;
+        console.log('toAdd', toAddress)
+        const fromAddress = formData.address1;
+        console.log('from', fromAddress)
+        
+        try {
+
+            await props.voteModule.propose(
+            description,
+            [
+                {
+                // We're sending ourselves 0 ETH. Just sending our own token.
+                nativeTokenValue: 0,
+                transactionData: props.tokenModule.contract.interface.encodeFunctionData(
+                    // We're doing a transfer from the treasury to our wallet.
+                    "transfer",
+                    [
+                    fromAddress,
+                    amount,
+                    ]
+                ),
+        
+                toAddress: toAddress,
+                },
+            ]
+            );
+        
+            console.log(
+            "✅ Successfully created proposal"
+            );
+        } catch (error) {
+            console.error("failed to create proposal", error);
+        }
+    }    
+
         
     function handleChange(event) {
         const {name, value, type, checked} = event.target
@@ -41,9 +85,11 @@ export default function Form() {
         formData[addressToClean] = "";
       }
 
+      setProposal();
+
       //we need to clean the blank spaces. maybe just 1,4 and 5 are filled
 
-     console.log(formData)
+     console.log('DATA: ',formData)
     }        
     
     let addressName = [];
@@ -58,8 +104,6 @@ export default function Form() {
             //check this line 
         />
      })
-
-    console.log(formData)
 
     return(
         <div className="container">
@@ -112,7 +156,7 @@ export default function Form() {
                 
                 <br />
                 <br />
-                <button>Submit</button>
+                <button>Submit proposal</button>
             </form>
         </div>
     )
