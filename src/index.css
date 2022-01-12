@@ -1,5 +1,6 @@
+
 html,
-body {
+.main {
   margin: 0;
   font-family: Inter, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -7,21 +8,8 @@ body {
   background-color: #111111;
   color: #bcbcbc;
   overflow-x: hidden;
-}
-nav{
-  display: flex;
-  background-color: #1e1e1e;
-  justify-content: space-around;
-  align-items: center;
-  margin: 20px;
-  height: 60px;
-  width: 100%;
-  border-radius: 30px;
-  
-}
-nav > h4{
-  color: #bcbcbc;
-  padding: 10px;
+  width: 960px;
+  margin: 0 auto;
 }
 
 #root {
@@ -29,14 +17,6 @@ nav > h4{
   display: flex;
 }
 
-h1 {
-  font-size: 5rem;
-}
-@media screen and (max-width: 768px) {
-  h1 {
-    font-size: 3rem;
-  }
-}
 
 .unsupported-network {
   width: 340px;
@@ -60,10 +40,9 @@ h1 {
 
 .landing,
 .connect-wallet,
-.mint-nft,
-.member-page {
+.mint-nft {
   flex-direction: column;
-  width: 1500px;
+  width: 960px;
   max-width: calc(100% - 1rem);
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -73,54 +52,50 @@ h1 {
   text-align: center;
 }
 
-.member-page > div {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  text-align: left;
-  gap: 2rem;
+
+.tab-list {  
+  border-bottom: 3px solid #1e1e1e;
+  padding-left: 80px;
 }
-.member-page > div > div {
+
+.tab-list-item {
+  cursor: pointer;
+  display: inline-block;
+  list-style: none;
+  margin-bottom: -3px;
+  padding: 0.5rem 0.75rem;
+}
+
+.tab-list-active {
+  background-color: #111111;
+  border: solid #1e1e1e;
+  border-width: 3px 3px 0 3px;
+}
+
+.dashboard {
+  display: flex;
+  align-content: center;
+  min-width: 50%;
+  padding: 20px;
+}
+
+.tab--proposals{
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+}
+
+.proposals--active{
   display: flex;
   flex-direction: column;
-  width: 50%;
-  gap: 1rem;
-}
-@media screen and (max-width: 768px) {
-  .member-page > div {
-    flex-direction: column;
-  }
-  .member-page > div > div {
-    width: 100%;
-  }
 }
 
-.member-page form {
+.tab--project{
+  width: 960px;
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  justify-content: center;
 }
 
-.member-page form > div {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.member-page form h5 {
-  margin-top: 0;
-  color: #bcbcbc;
-}
-
-.member-page form .card > div {
-  display: flex;
-  gap: 1rem;
-  justify-content: space-between;
-}
-
-.member-page form small {
-  text-align: center;
-}
 
 .card {
   background-color: #1e1e1e;
@@ -128,7 +103,9 @@ h1 {
   border-radius: 1rem;
   color: #bcbcbc;
   box-shadow: 3.1px 6.2px 6.2px hsl(0deg 0% 0% / 0.4);
+  margin: 20px;
 }
+
 
 button {
   cursor: pointer;
@@ -157,7 +134,7 @@ button:disabled {
 }
 
 .proposalForm--description{
-  width: 100%;
+  width: 600px;
   height: 100px;
   resize: none;
   overflow: auto;
@@ -167,3 +144,18 @@ button:disabled {
   display: flex;
   align-items: center;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

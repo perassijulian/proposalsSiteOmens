@@ -95,7 +95,7 @@ export default function ActiveProposals(props) {
               >
   
               {props.proposalsToVote.length >0 &&
-              <>
+              <div className="proposals--active">
                 <ProposalRender
                   key={props.proposalsToVote.proposalId} 
                   proposalToRender={props.proposalsToVote} 
@@ -113,11 +113,13 @@ export default function ActiveProposals(props) {
                         ? "Buy tokens to vote"
                         :"Submit Votes"}
                 </button>
+                <br />
+                <br />
                 <small>
                   This will trigger multiple transactions that you will need to
                   sign.
                 </small>
-              </>}
+              </div>}
               {props.proposalsToVote.length === 0 &&
                 <p>No new proposals to vote on</p>
               }

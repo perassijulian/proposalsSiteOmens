@@ -8,6 +8,7 @@ import ProposalRender from './components/ProposalRender';
 import Navbar from './components/Navbar';
 import AddProposalForm from "./components/AddProposalForm";
 import ActiveProposals from "./components/ActiveProposals";
+import Tabs from "./components/Tabs";
 import MemberList from "./components/MemberList";
 
 // We instantiate the sdk on Rinkeby.
@@ -231,41 +232,66 @@ const App = () => {
   
   if (hasClaimedNFT) {
     return (
-      <div className="member-page">
-        <Navbar />
-        <h1>Omens</h1>
-        <h2>Here you can find our members and proposals</h2>
-        <div>          
-          <div>
-            <p>Member List</p>
-            <MemberList 
-              memberList={memberList}
-            />
-          </div>
-          <div>
-            <p>Active Proposals</p>
-            <ActiveProposals 
-              proposalsToVote={proposalsToVote}
-              tokenModule={tokenModule}
-              voteModule={voteModule}
-              address={address}
-              accountBalance={accountBalance}
-              hasVoted={hasVoted}
-              setHasVoted={setHasVoted}
-            />
-            <p>Proposals already voted</p>
-            <ProposalRender 
-              key={proposalsAlreadyVoted.proposalId}
-              proposalToRender={proposalsAlreadyVoted} 
-              ableToVote={false}
-            />
-          </div>
-          <div>
-            <AddProposalForm 
-              tokenModule={tokenModule}
-              voteModule={voteModule}
-            />
-          </div>
+      <div className="main">          
+        <div className="dashboard">  
+          <Tabs className="tabs--main">
+            <div label="ABOUT">
+              <p>Omens is a new DAO that mainly focus on problems related to plastic pollution, 
+              water scarcity, child labor and gender/race equality. We do our best to address 
+              these issues in an integral manner</p>
+              <p>Our mission is to change the actual course of social and environmental issues. 
+              We want to prevent pollution and abuse of the earth’s resources, and protect the 
+              basic human rights of the most vulnerable people.</p>
+              <p>Our vision is to be the largest fundraising cryptocurrency that funds 
+              socio-environmental organizations. Such organizations range from multi-million 
+              dollar to self-managed. We encourage you to start them up with our expertise and 
+              funds. </p>
+              <p>Our core values are related to integrity and ethics, respect for all beings, 
+              collaborative work, inclusiveness and risk-taking.</p>
+            </div>
+            <div label="PROPOSALS">
+              <div className="tab--proposals">
+                <div>
+                  <p>Active Proposals</p>
+                  <ActiveProposals 
+                    proposalsToVote={proposalsToVote}
+                    tokenModule={tokenModule}
+                    voteModule={voteModule}
+                    address={address}
+                    accountBalance={accountBalance}
+                    hasVoted={hasVoted}
+                    setHasVoted={setHasVoted}
+                  />
+                </div>
+                <div>
+                  <p>Proposals already voted</p>
+                  <ProposalRender 
+                    key={proposalsAlreadyVoted.proposalId}
+                    proposalToRender={proposalsAlreadyVoted} 
+                    ableToVote={false}
+                  />
+                </div>
+              </div>
+            </div>
+            <div label="SUBMIT PROJECT">
+              <div>
+                <AddProposalForm 
+                  tokenModule={tokenModule}
+                  voteModule={voteModule}
+                />
+              </div>
+            </div>
+            <div label="MEMBERS">
+              <div>
+                <p>Member List</p>
+                <MemberList 
+                  memberList={memberList}
+                />
+              </div>
+            </div>
+            <div label="CONTACT">
+            </div>
+          </Tabs>
         </div>
       </div>
     );

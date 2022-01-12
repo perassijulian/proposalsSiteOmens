@@ -106,7 +106,8 @@ export default function Form(props) {
      })
 
     return(
-        <div className="container">
+        <div className="tab--project">
+            <div>
             <p>Submit proposal</p>
             <br />
             <textarea 
@@ -158,6 +159,7 @@ export default function Form(props) {
                 <br />
                 <button>Submit proposal</button>
             </form>
+            </div>
         </div>
     )
 }
