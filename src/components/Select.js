@@ -3,7 +3,8 @@ import React from 'react';
 export default function Form(props) {
     
     return(
-        <select 
+        <select
+            className="amount-beneficiaries" 
             id="amountReceivers" 
             value={props.amountReceivers}
             name="amountReceivers"

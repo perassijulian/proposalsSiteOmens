@@ -5,8 +5,8 @@ html,
   font-family: Inter, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #111111;
-  color: #bcbcbc;
+  background-color: #202124;
+  color: #e8eaed;
   overflow-x: hidden;
   width: 960px;
   margin: 0 auto;
@@ -54,7 +54,7 @@ html,
 
 
 .tab-list {  
-  border-bottom: 3px solid #1e1e1e;
+  border-bottom: 3px solid #52565a;
   padding-left: 80px;
 }
 
@@ -67,15 +67,14 @@ html,
 }
 
 .tab-list-active {
-  background-color: #111111;
-  border: solid #1e1e1e;
+  background-color: #202124;
+  border: solid #52565a;
   border-width: 3px 3px 0 3px;
 }
 
 .dashboard {
   display: flex;
   align-content: center;
-  min-width: 50%;
   padding: 20px;
 }
 
@@ -96,12 +95,17 @@ html,
   justify-content: center;
 }
 
+.tab--members{
+  width: 960px;
+  
+}
+
 
 .card {
-  background-color: #1e1e1e;
+  background-color: #303134;
   padding: 1rem;
   border-radius: 1rem;
-  color: #bcbcbc;
+  color: #e8eaed;
   box-shadow: 3.1px 6.2px 6.2px hsl(0deg 0% 0% / 0.4);
   margin: 20px;
 }
@@ -109,15 +113,17 @@ html,
 
 button {
   cursor: pointer;
-  background-color: #1e1e1e;
-  color: #bcbcbc;
+  background-color: #303134;
+  color: #e8eaed;
   border: none;
   font-weight: bold;
   font-family: inherit;
   padding: 1.2rem 2rem;
+  margin: 10px;
   text-transform: uppercase;
   border-radius: 3rem;
   font-size: 1.2rem;
+  box-shadow: 3.1px 6.2px 6.2px hsl(0deg 0% 0% / 0.4);
 }
 
 button:hover {
@@ -134,6 +140,8 @@ button:disabled {
 }
 
 .proposalForm--description{
+  border-radius: 1rem;
+  padding: 10px;
   width: 600px;
   height: 100px;
   resize: none;
@@ -145,10 +153,15 @@ button:disabled {
   align-items: center;
 }
 
+.amount-input{
+  margin: 0 7px;
+  width: 50px;
+}
 
+.amount-beneficiaries{
+  margin: 0 7px;
 
-
-
+}
 
 
 
