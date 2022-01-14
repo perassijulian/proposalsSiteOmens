@@ -7,6 +7,8 @@ In the project directory, you can run `npm start` oy you can check https://propo
 
 ## SCREENSHOTS
 
+Still needs a lot to do on design and functionality but to have an idea.
+
 # landing
 
 ![alt text](https://github.com/perassijulian/proposalsSiteOmens/blob/main/screenshots/landing.PNG)
@@ -26,10 +28,6 @@ In the project directory, you can run `npm start` oy you can check https://propo
 # submit
 
 ![alt text](https://github.com/perassijulian/proposalsSiteOmens/blob/main/screenshots/submit.PNG)
-
-# treasury
-
-![alt text](https://github.com/perassijulian/proposalsSiteOmens/blob/main/screenshots/treasury.PNG)
 
 # treasury
 
