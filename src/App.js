@@ -5,7 +5,7 @@ import { UnsupportedChainIdError } from "@web3-react/core";
 import { useWeb3 } from "@3rdweb/hooks";
 import { ethers } from "ethers";
 import ProposalRender from './components/ProposalRender';
-import Navbar from './components/Navbar';
+import Treasury from "./components/Treasury";
 import AddProposalForm from "./components/AddProposalForm";
 import ActiveProposals from "./components/ActiveProposals";
 import Tabs from "./components/Tabs";
@@ -281,9 +281,13 @@ const App = () => {
                 />
               </div>
             </div>
-            <div label="MEMBERS">
-              <div>
-                <p>Member List</p>
+            <div label="TREASURY">
+              <div className="tab--treasury">
+                <Treasury 
+                  proposals={proposals}
+                  voteModule={voteModule}
+                />
+
                 <MemberList 
                   memberList={memberList}
                 />

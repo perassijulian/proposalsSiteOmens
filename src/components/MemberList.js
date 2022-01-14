@@ -7,7 +7,8 @@ export default function MemberList(props) {
     };
 
     return(
-        <div className="tab--members">
+        <div>  
+          <p>Member List</p>
           <table className="card">
             <thead>
               <tr>

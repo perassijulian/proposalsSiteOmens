@@ -84,6 +84,13 @@ html,
   grid-auto-flow: column;
 }
 
+.tab--treasury{
+  width: 960px;
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+}
+
 .proposals--active{
   display: flex;
   flex-direction: column;
@@ -93,11 +100,6 @@ html,
   width: 960px;
   display: flex;
   justify-content: center;
-}
-
-.tab--members{
-  width: 960px;
-  
 }
 
 
