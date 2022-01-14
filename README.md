@@ -1,13 +1,36 @@
 # Omens DAO dashboard
 
 Website where you can add and vote on the proposals made for the organization.
-It's still on development, mostly design stuff.
 
-## Available Scripts
+In the project directory, you can run `npm start` oy you can check https://proposals-site-omens.vercel.app/
 
-In the project directory, you can run:
 
-### `npm start`
+## SCREENSHOTS
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# landing
+
+![alt text](https://github.com/perassijulian/proposalsSiteOmens/blob/main/screenshots/landing.PNG)
+
+# minting
+
+![alt text](https://github.com/perassijulian/proposalsSiteOmens/blob/main/screenshots/minting.PNG)
+
+# about
+
+![alt text](https://github.com/perassijulian/proposalsSiteOmens/blob/main/screenshots/about.PNG)
+
+# proposals
+
+![alt text](https://github.com/perassijulian/proposalsSiteOmens/blob/main/screenshots/proposals.PNG)
+
+# submit
+
+![alt text](https://github.com/perassijulian/proposalsSiteOmens/blob/main/screenshots/submit.PNG)
+
+# treasury
+
+![alt text](https://github.com/perassijulian/proposalsSiteOmens/blob/main/screenshots/treasury.PNG)
+
+# treasury
+
+![alt text](https://github.com/perassijulian/proposalsSiteOmens/blob/main/screenshots/treasury.PNG)
