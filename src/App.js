@@ -21,7 +21,7 @@ const tokenModule = sdk.getTokenModule(
   "0x6FE86cE382861A8860B9121ed0861Bcfc524b5F0"
 );
 const voteModule = sdk.getVoteModule(
-  "0x313Aa930e9231C158849e32C1F7E0dd5474b25e0",
+  "0x372f82efA25f7537E73d43296db6Bd32FD3D7027",
 );
 
 const App = () => {
@@ -84,10 +84,8 @@ const App = () => {
         .then((hasVoted) => {
           if (!hasVoted) {
             setProposalsToVote(prevState => [...prevState, proposals[i]]);
-            console.log('😳 NO vote for prop nr ', i)
           } else {
             setProposalsAlreadyVoted(prevState => [...prevState, proposals[i]]);
-            console.log('🥵 ALREADY vote for nr ', i);
           }
         })
         .catch((err) => {
@@ -278,6 +276,7 @@ const App = () => {
                 <AddProposalForm 
                   tokenModule={tokenModule}
                   voteModule={voteModule}
+                  proposalsLength={proposals.length}
                 />
               </div>
             </div>

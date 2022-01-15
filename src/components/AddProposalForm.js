@@ -25,15 +25,11 @@ export default function Form(props) {
         })
         
     async function setProposal() {
-        console.log('Proposal initiated!!')
         const amount = ethers.utils.parseUnits(formData.amountMoney.toString(), 18);
-        console.log('amount', amount)
-        const description = formData.description;
-        console.log('description', description)
+        let newProp = props.proposalsLength + 1;
+        const description = 'PROPOSAL ' + newProp + ": " + formData.description;
         const toAddress = props.tokenModule.address;
-        console.log('toAdd', toAddress)
         const fromAddress = formData.address1;
-        console.log('from', fromAddress)
         
         try {
 
@@ -145,9 +141,10 @@ export default function Form(props) {
                         <p> This proposal is to </p>
                         <Select 
                             amountReceivers={formData.amountReceivers}
+                            display={[1,2,3,4,5,6,7,8,9,10]}
                             handleChange={handleChange}
                         />
-                        {formData.amountReceivers == 1
+                        {formData.amountReceivers === "1"
                             ? <p> beneficiary</p>
                             : <p> beneficiaries</p>
                         }
