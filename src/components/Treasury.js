@@ -3,6 +3,8 @@ import React, { useState } from "react";
 export default function Treasury(props) {
     // A fancy function to shorten someones wallet address, no need to show the whole thing. 
     const [canExec, setCanExec] = useState("");
+    const [proposalSelected, setProposalSelected] = useState("");
+
 
     const shortenAddress = (str) => {
         return str.substring(0, 6) + "..." + str.substring(str.length - 4);
@@ -14,10 +16,17 @@ export default function Treasury(props) {
     })
 
 
-    async function handleChange(event){
+    async function handleSelectProposal(event){
+        setProposalSelected(event.target.value.toString())
+        const disp = await props.voteModule.get(event.target.value)
+        console.log(disp)
         setCanExec(await props.voteModule.canExecute(event.target.value))
     }
-    console.log('afuera', canExec)
+
+    async function executeProposal(proposalSelected) {
+        await props.voteModule.execute(proposalSelected);
+    }
+
     return(
         <div>  
           <p>Treasury</p>
@@ -28,12 +37,17 @@ export default function Treasury(props) {
           <div>
             <select
                 className="execute--proposals" 
-                onChange={handleChange}
+                onChange={handleSelectProposal}
             >
                 <option value="">-- SELECT --</option>
                 {optionDisplay}
             </select>
-            <button>{canExec? "EXECUTE" : "CAN'T EXECUTE"}</button>
+            <button 
+                disabled={!canExec}
+                onClick={executeProposal}
+            >
+            {canExec? "EXECUTE" : "CAN'T EXECUTE"}
+            </button>
           </div>
           
         </div>

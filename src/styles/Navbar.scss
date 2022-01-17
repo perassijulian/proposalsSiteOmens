@@ -1,0 +1,37 @@
+@import "./Variables.scss";
+
+.navbar{
+    background-color: $blackColor;
+    margin:0%;
+    height:70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    div{
+        margin:10px;
+        padding: 10px;
+        font-size: $mdText;
+        color: $whiteColor;
+        border-radius: 5px;
+        
+        &:hover{
+            cursor: pointer;
+            background-color: $hoverColor;
+
+        }
+    }
+
+    h4{
+        font-size: $mdText;
+        color: $whiteColor;
+        margin-left: 80px;
+    
+    }
+}
+
+nav{
+    margin-right: 80px;
+    display: flex;
+}

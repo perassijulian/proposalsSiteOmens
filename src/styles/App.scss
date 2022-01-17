@@ -1,0 +1,176 @@
+@import "./Variables.scss";
+
+body {
+  margin:0%;
+  padding: 0%;
+}
+
+html,
+.container {
+  margin: 0;
+  font-family: $Inter;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $bgColor;
+  color: $lightGrey;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+}
+
+
+.unsupported-network {
+  width: 340px;
+  max-width: 100%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin: auto;
+  padding: 1rem;
+}
+
+.error {
+  width: 340px;
+  max-width: 100%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin: auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: #f00;
+}
+
+.dashboard {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  width: 960px;
+}
+
+
+
+.landing,
+.connect-wallet,
+.mint-nft {
+  flex-direction: column;
+  width: 960px;
+  max-width: calc(100% - 1rem);
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin: auto;
+  align-content: center;
+  display: flex;
+  text-align: center;
+}
+
+
+.tab-list {  
+  border-bottom: 3px solid #52565a;
+  padding-left: 80px;
+}
+
+.tab-list-item {
+  cursor: pointer;
+  display: inline-block;
+  list-style: none;
+  margin-bottom: -3px;
+  padding: 0.5rem 0.75rem;
+}
+
+.tab-list-active {
+  background-color: #202124;
+  border: solid #52565a;
+  border-width: 3px 3px 0 3px;
+}
+
+
+
+.tab--proposals{
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+}
+
+.tab--treasury{
+  width: 960px;
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+}
+
+.proposals--active{
+  display: flex;
+  flex-direction: column;
+}
+
+.tab--project{
+  width: 960px;
+  display: flex;
+  justify-content: center;
+}
+
+
+.card {
+  background-color: #303134;
+  padding: 1rem;
+  border-radius: 1rem;
+  color: #e8eaed;
+  box-shadow: 3.1px 6.2px 6.2px hsl(0deg 0% 0% / 0.4);
+  margin: 20px;
+}
+
+
+button {
+  cursor: pointer;
+  background-color: #303134;
+  color: #e8eaed;
+  border: none;
+  font-weight: bold;
+  font-family: inherit;
+  padding: 1.2rem 2rem;
+  margin: 10px;
+  text-transform: uppercase;
+  border-radius: 3rem;
+  font-size: 1.2rem;
+  box-shadow: 3.1px 6.2px 6.2px hsl(0deg 0% 0% / 0.4);
+}
+
+button:hover {
+  background-color: #121212;
+}
+
+button:focus {
+  background-color: #222;
+}
+
+button:disabled {
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.proposalForm--description{
+  border-radius: 1rem;
+  padding: 10px;
+  width: 600px;
+  height: 100px;
+  resize: none;
+  overflow: auto;
+}
+
+.proposalForm--span {
+  display: flex;
+  align-items: center;
+}
+
+.amount-input{
+  margin: 0 7px;
+  width: 50px;
+}
+
+.amount-beneficiaries{
+  margin: 0 7px;
+
+}
