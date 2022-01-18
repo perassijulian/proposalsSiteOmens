@@ -102,11 +102,8 @@ export default function Form(props) {
           return
       }
 
-      //setProposal();
-      console.log("paso")
+      setProposal();
       //we need to clean the blank spaces. maybe just 1,4 and 5 are filled
-
-     console.log('DATA: ',formData)
     }        
     
     let addressName = [];
@@ -146,7 +143,7 @@ export default function Form(props) {
                             onChange={handleChange}
                             value={formData.amountMoney}
                         /> 
-                        <p>OMN</p>
+                        <p>OMN to:</p>
                     </span>
                     {formData.amountReceivers>1 && 
                     <span className="tabs--submit--span--accotation">
