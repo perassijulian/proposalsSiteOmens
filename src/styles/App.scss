@@ -1,27 +1,33 @@
 @import "./Variables.scss";
 
-body {
-  margin:0%;
+body{
+  margin: 0%;
   padding: 0%;
+  background-color: $bgColor;
 }
 
-html,
-.container {
-  margin: 0;
+.app{
   font-family: $Inter;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: $bgColor;
   color: $lightGrey;
   overflow-x: hidden;
   width: 100%;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h2{
+  font-size: 30px;
+}
+
+p{
+  font-size: 25px;
 }
 
 #root {
   min-height: 100vh;
   display: flex;
 }
-
 
 .unsupported-network {
   width: 340px;
@@ -43,15 +49,6 @@ html,
   background-color: #f00;
 }
 
-.dashboard {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  width: 960px;
-}
-
-
-
 .landing,
 .connect-wallet,
 .mint-nft {
@@ -66,33 +63,30 @@ html,
   text-align: center;
 }
 
+.tabs{
+  display: flex;
+  justify-content: center;
+  padding: 30px;
 
-.tab-list {  
-  border-bottom: 3px solid #52565a;
-  padding-left: 80px;
+    &--about p {
+      width: 960px;
+    }
+
+    &--proposals{
+      display: grid;
+      grid-auto-columns: minmax(0, 1fr);
+      grid-auto-flow: column;
+
+    }
+
+    &--submit{
+
+    }
+
+
+
 }
 
-.tab-list-item {
-  cursor: pointer;
-  display: inline-block;
-  list-style: none;
-  margin-bottom: -3px;
-  padding: 0.5rem 0.75rem;
-}
-
-.tab-list-active {
-  background-color: #202124;
-  border: solid #52565a;
-  border-width: 3px 3px 0 3px;
-}
-
-
-
-.tab--proposals{
-  display: grid;
-  grid-auto-columns: minmax(0, 1fr);
-  grid-auto-flow: column;
-}
 
 .tab--treasury{
   width: 960px;
@@ -105,13 +99,6 @@ html,
   display: flex;
   flex-direction: column;
 }
-
-.tab--project{
-  width: 960px;
-  display: flex;
-  justify-content: center;
-}
-
 
 .card {
   background-color: #303134;

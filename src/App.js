@@ -8,7 +8,6 @@ import ProposalRender from './components/ProposalRender';
 import Treasury from "./components/Treasury";
 import AddProposalForm from "./components/AddProposalForm";
 import ActiveProposals from "./components/ActiveProposals";
-import Tabs from "./components/Tabs";
 import MemberList from "./components/MemberList";
 import Navbar from "./components/Navbar";
 import About from "./components/About";
@@ -237,7 +236,7 @@ const App = () => {
   const TabProposals =
   <div className="tabs--proposals">
     <div>
-      <p>Active Proposals</p>
+      <h2>Active Proposals</h2>
       <ActiveProposals 
         proposalsToVote={proposalsToVote}
         tokenModule={tokenModule}
@@ -249,7 +248,7 @@ const App = () => {
       />
     </div>
     <div>
-      <p>Proposals already voted</p>
+      <h2>Proposals already voted</h2>
       <ProposalRender 
         key={proposalsAlreadyVoted.proposalId}
         proposalToRender={proposalsAlreadyVoted} 
@@ -259,7 +258,7 @@ const App = () => {
   </div>
 
   const TabSubmitProject = 
-  <div>
+  <div className="tabs--submit">
     <AddProposalForm 
       tokenModule={tokenModule}
       voteModule={voteModule}
@@ -268,7 +267,7 @@ const App = () => {
   </div>
   
   const TabTreasury = 
-  <div className="tab--treasury">
+  <div className="tabs--treasury">
     <Treasury 
       proposals={proposals}
       voteModule={voteModule}
@@ -282,7 +281,7 @@ const App = () => {
 
   if (hasClaimedNFT) {
     return (
-      <div className="container">
+      <div className="app">
         <Navbar 
           About={TabAbout}
           Proposals={TabProposals}
@@ -290,8 +289,8 @@ const App = () => {
           Treasury={TabTreasury}
           setToRender={setToRender}
         />          
-        <div className="dashboard">  
-          {toRender}
+        <div className="tabs">
+          {toRender}  
         </div>
       </div>
     );
