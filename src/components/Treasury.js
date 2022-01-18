@@ -29,7 +29,7 @@ export default function Treasury(props) {
 
     return(
         <div>  
-          <p>Treasury</p>
+          <h2>Treasury</h2>
           <h4>TODO: total amonut available on treasury</h4>
           <h4>TODO: button to check if proposal is ready to execute</h4>
           <h4>TODO: button to execute proposal</h4>

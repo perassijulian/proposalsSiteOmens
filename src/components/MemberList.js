@@ -8,7 +8,7 @@ export default function MemberList(props) {
 
     return(
         <div>  
-          <p>Member List</p>
+          <h2>Member List</h2>
           <table className="card">
             <thead>
               <tr>

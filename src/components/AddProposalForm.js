@@ -102,12 +102,12 @@ export default function Form(props) {
      })
 
     return(
-        <div className="tab--project">
+        <div className="tabs--submit">
             <div>
-            <p>Submit proposal</p>
+            <h2>Submit proposal</h2>
             <br />
             <textarea 
-                className='proposalForm--description'
+                className='tabs--submit--textarea'
                 value={formData.description}
                 placeholder="Write the description for your project proposal."
                 onChange={handleChange}
@@ -154,7 +154,9 @@ export default function Form(props) {
                 
                 <br />
                 <br />
-                <button>Submit proposal</button>
+                <div className='tabs--submit--button'>
+                    <button>Submit proposal</button>
+                </div>
             </form>
             </div>
         </div>

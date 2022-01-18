@@ -80,31 +80,37 @@ p{
     }
 
     &--submit{
+      width: 960px;
+      display: flex;
+      justify-content: center;
+
+      &--button{
+        text-align: center;
+      }
+
+      &--textarea{
+        border-radius: 1rem;
+        padding: 10px;
+        width: 600px;
+        height: 100px;
+        resize: none;
+        overflow: auto;
+      }
 
     }
 
-
-
-}
-
-
-.tab--treasury{
-  width: 960px;
-  display: grid;
-  grid-auto-columns: minmax(0, 1fr);
-  grid-auto-flow: column;
-}
-
-.proposals--active{
-  display: flex;
-  flex-direction: column;
+    &--treasury{
+      display: grid;
+      grid-auto-columns: minmax(0, 1fr);
+      grid-auto-flow: column;
+    }
 }
 
 .card {
-  background-color: #303134;
+  background-color: $grey;
   padding: 1rem;
   border-radius: 1rem;
-  color: #e8eaed;
+  color: $lightGrey;
   box-shadow: 3.1px 6.2px 6.2px hsl(0deg 0% 0% / 0.4);
   margin: 20px;
 }
@@ -112,8 +118,8 @@ p{
 
 button {
   cursor: pointer;
-  background-color: #303134;
-  color: #e8eaed;
+  background-color: $grey;
+  color: $lightGrey;
   border: none;
   font-weight: bold;
   font-family: inherit;
@@ -123,28 +129,21 @@ button {
   border-radius: 3rem;
   font-size: 1.2rem;
   box-shadow: 3.1px 6.2px 6.2px hsl(0deg 0% 0% / 0.4);
-}
 
-button:hover {
-  background-color: #121212;
-}
+  &:hover {
+    background-color: $darkGrey;
+  }
 
-button:focus {
-  background-color: #222;
-}
+  &:focus {
+    background-color: $darkGrey;
+  }
 
-button:disabled {
-  opacity: 0.8;
-  pointer-events: none;
-}
+  &:disabled {
+    opacity: 0.8;
+    pointer-events: none;
+  }
 
-.proposalForm--description{
-  border-radius: 1rem;
-  padding: 10px;
-  width: 600px;
-  height: 100px;
-  resize: none;
-  overflow: auto;
+
 }
 
 .proposalForm--span {
