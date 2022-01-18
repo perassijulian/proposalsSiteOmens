@@ -6,7 +6,7 @@ export default function ProposalRender(props) {
     <>
       {props.proposalToRender.map((proposal, index) => (
         <div key={proposal.proposalId} className="card">
-          <h5>{proposal.description}</h5>
+          <p>{proposal.description}</p>
           
           {props.ableToVote && 
           <div>

@@ -7,6 +7,7 @@ import React from 'react';
 export default function Addresses(props) {
     return(
             <input
+                className='tabs--submit--address'
                 type="text"
                 placeholder="Address to transfer"
                 name={props.name}

@@ -75,14 +75,35 @@ export default function Form(props) {
     function handleSubmit(event) {
       event.preventDefault();
 
+    // check that all addressess have 42characters
+      for (let i=1; i<=formData.amountReceivers; i++) {
+        let addressToCheck = `address${i}`;
+        if (formData[addressToCheck].split("").length != 42) {
+            alert("Your address must have 42 characters. Double check it")
+            alert("Your address number "+i+" does not meet the requirement")
+            return
+        }
+      }
+      
       //cleaner when you go from higher to lower amount of receivers
       for (let i=(parseInt(formData.amountReceivers)+1); i<11; i++) {
         let addressToClean = `address${i}`;
         formData[addressToClean] = "";
       }
 
-      setProposal();
+      //check that you put an amount
+      if (formData.amountMoney<=0) {
+          alert("You need to add an amount for the proposal")
+          return
+      }
+      
+      if (formData.description.split()<=20) {
+          alert("Do not be lazy, you can describe better the project!")
+          return
+      }
 
+      //setProposal();
+      console.log("paso")
       //we need to clean the blank spaces. maybe just 1,4 and 5 are filled
 
      console.log('DATA: ',formData)
@@ -114,30 +135,32 @@ export default function Form(props) {
                 name="description"
             />
             <br />
-            <form onSubmit={handleSubmit}>
-                <br />
+            <form onSubmit={handleSubmit} className='tabs--submit--form'>
                 <div>
-                    <span className="proposalForm--span">
+                    <span className="tabs--submit--span">
                         <p> It will transfer</p>
-                        <input className="amount-input"
+                        <input className="tabs--submit--span--input"
                             type="number"
                             placeholder="0.0"
                             name="amountMoney"
                             onChange={handleChange}
                             value={formData.amountMoney}
                         /> 
-                        <p>OMN to ALL beneficiaries</p>
+                        <p>OMN</p>
                     </span>
                     {formData.amountReceivers>1 && 
-                    <span>
-                        <p>Or also you can say,</p>
-                        {Math.round(formData.amountMoney/formData.amountReceivers)}
+                    <span className="tabs--submit--span--accotation">
+                        <p>That is,</p>
+                        <div className='tabs--submit--span--division'>
+                            {Math.round(formData.amountMoney/formData.amountReceivers)}
+                        </div>
                         <p>OMN to EACH beneficiary</p> 
-                    </span>}   
+                    </span>}
+                    <br />
+                    {addressesMapping}   
                 </div>
-                <br />
                 <div>
-                    <span className="proposalForm--span">
+                    <span className="tabs--submit--span">
                         <p> This proposal is to </p>
                         <Select 
                             amountReceivers={formData.amountReceivers}
@@ -149,14 +172,10 @@ export default function Form(props) {
                             : <p> beneficiaries</p>
                         }
                     </span>
-                    {addressesMapping}
-                </div>
-                
-                <br />
-                <br />
-                <div className='tabs--submit--button'>
-                    <button>Submit proposal</button>
-                </div>
+                    <div className='tabs--submit--button'>
+                        <button>Submit proposal</button>
+                    </div>
+                </div>                
             </form>
             </div>
         </div>

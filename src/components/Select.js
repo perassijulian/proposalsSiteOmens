@@ -8,7 +8,7 @@ export default function Form(props) {
     
     return(
         <select
-            className="amount-beneficiaries" 
+            className="tabs--submit--span--select" 
             id="amountReceivers" 
             value={props.amountReceivers}
             name="amountReceivers"
