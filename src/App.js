@@ -14,6 +14,11 @@ import Navbar from "./components/Navbar";
 import About from "./components/About";
 import "./styles/App.scss";
 
+import {
+  Routes,
+  Route,
+} from 'react-router-dom';
+
 // We instantiate the sdk on Rinkeby.
 const sdk = new ThirdwebSDK("rinkeby");
 
@@ -281,6 +286,8 @@ const App = () => {
   if (hasClaimedNFT) {
     return (
       <div className="app">
+        {/**
+        
         <Navbar 
           About={TabAbout}
           Proposals={TabProposals}
@@ -291,6 +298,15 @@ const App = () => {
         <div className="tabs">
           {toRender}  
         </div>
+      
+      */}
+        <Routes>
+          <Route path='/' element={TabAbout}/>
+          <Route path='proposals' element={TabProposals}/>
+          <Route path='projects' element={TabSubmitProject}/>
+          <Route path='treasury' element={TabTreasury}/>
+        </Routes>
+
       </div>
     );
   };

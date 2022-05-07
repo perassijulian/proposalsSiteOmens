@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 //import './index.css';
 import App from './App';
 
@@ -18,13 +19,13 @@ const connectors = {
 
 // Finally, wrap App with ThirdwebWeb3Provider.
 ReactDOM.render(
-  <React.StrictMode>
-    <ThirdwebWeb3Provider
-      connectors={connectors}
-      supportedChainIds={supportedChainIds}
-    >
-      <App />
-    </ThirdwebWeb3Provider>
-  </React.StrictMode>,
+    <BrowserRouter>
+      <ThirdwebWeb3Provider
+        connectors={connectors}
+        supportedChainIds={supportedChainIds}
+      >
+        <App />
+      </ThirdwebWeb3Provider>
+    </BrowserRouter>,
   document.getElementById('root')
 );
